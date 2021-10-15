@@ -1,16 +1,44 @@
 <h1>Who are you now?</h1>
 
 <%= form_with model: @user do |form| %>
-  <%= form.label :username %>
-  <%= form.text_field :username %>
-  <%= form.label :password %>
-  <%= form.password_field :password %>
-  <%= form.label :email %>
-  <%= form.email_field :email, placeholder: "example@example.com" %>
-  <%= form.submit %>
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %><br><br>
+    <% end %>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <%= form.label :email %>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
+    <%= form.submit %>
 <% end %>
 
-<!--
+<!-- To put each field's error messages underneath each field
+<%= form_with model: @user do |form| %>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+    <% @user.errors.full_messages_for(:username).each do |message| %>
+      <div><%= message %><br><br></div>
+    <% end %>
+
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+      <div><%= message %><br><br></div>
+    <% end %>
+
+    <%= form.label :email %>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+      <div><%= message %><br><br></div>
+    <% end %>
+
+    <%= form.submit %>
+<% end %>
+-->
+
+
+<!-- Railsy Forms with #form_tag
 <%= form_tag('/users') do %>
   <%= label_tag 'username' %>
   <%= text_field_tag 'username' %>
@@ -18,11 +46,11 @@
   <%= password_field_tag 'password' %>
   <%= label_tag 'email' %>
   <%= email_field_tag 'email' %>
-  <%= submit_tag("Submit") %>
+  <%= submit_tag("") %>
 <% end %>
 -->
 
-<!--
+<!-- HTML form
 <form action="/users" method="post" accept-charset="UTF-8">
   <label for="username">Username:</label>
   <input type="text" name="user[username]">
