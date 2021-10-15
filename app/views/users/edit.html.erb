@@ -1,0 +1,36 @@
+<h1>Who are you now?</h1>
+
+<%= form_with model: @user do |form| %>
+  <%= form.label :username %>
+  <%= form.text_field :username %>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+  <%= form.label :email %>
+  <%= form.email_field :email, placeholder: "example@example.com" %>
+  <%= form.submit %>
+<% end %>
+
+<!--
+<%= form_tag('/users') do %>
+  <%= label_tag 'username' %>
+  <%= text_field_tag 'username' %>
+  <%= label_tag 'password' %>
+  <%= password_field_tag 'password' %>
+  <%= label_tag 'email' %>
+  <%= email_field_tag 'email' %>
+  <%= submit_tag("Submit") %>
+<% end %>
+-->
+
+<!--
+<form action="/users" method="post" accept-charset="UTF-8">
+  <label for="username">Username:</label>
+  <input type="text" name="user[username]">
+  <label for="password">Password:</label>
+  <input type="password" name="user[password]">
+  <label for="email">Email:</label>
+  <input type="email" name="user[email]">
+  <input type="submit" value="Submit">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>
+-->
